@@ -4,37 +4,19 @@
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
     <script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
-    <script src="/scripts/xlsx/dist/xlsx.full.min.js"></script>
-
-
     <style>
         .hexbin-hexagon {
             stroke: #000;
             stroke-width: 1px;
-        }
-        #overlay {
-            position: fixed; /* Sit on top of the page content */
-           /* Hidden by default */
-            width: 100px; /* Full width (cover the whole page) */
-            height: 100px; /* Full height (cover the whole page) */
-            background-color: rgba(0,0,0,0.1);
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 2000; /* Specify a stack order in case you're using a different order for other elements */
-            cursor: pointer; /* Add a pointer on hover */
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
 
 </head>
 <body>
-<div id="overlay"><h1>asdsda</h1></div>
-<div id="map" style="width: 100%; height: 100%; border: 1px solid #ccc">
 
-sadsad
-</div>
-
+<div id="map" style="width: 100%; height: 100%; border: 1px solid #ccc"></div>
+<button onclick="generateData()">Generate Data</button>
 </body>
 <script>
     var center = [1.3521, 103.8198];
@@ -58,18 +40,14 @@ sadsad
         .colorValue(function(d) { return d.length; })
         .radiusValue(function(d) { return d.length; });
 
-//    var latFn = d3.randomNormal(center[0], 1);
-//    var longFn = d3.randomNormal(center[1], 1);
-    var latFn = 1.352;
-    var longFn = 103.81981;
+    var latFn = d3.randomNormal(center[0], 1);
+    var longFn = d3.randomNormal(center[1], 1);
 
     var generateData = function(){
         var data = [];
         for(i=0; i<1000; i++){
-            const long = longFn;
-            const lat = latFn;
-            data.push([long,  lat]);
-//            data.push(103.8198, 1.3521)
+//            data.push([longFn(),  latFn()]);
+            data.push(1.3521,103.8198)
         }
         hexLayer.data(data);
     };
