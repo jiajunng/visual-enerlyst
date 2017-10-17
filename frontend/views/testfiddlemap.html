@@ -5,35 +5,59 @@
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
     <script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
     <script src="/scripts/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="/javascripts/dataupload.js"></script>
+    <script src="/scripts/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="/scripts/jquery/dist/jquery.min.js"></script>
+    <script src="/scripts/bootstrap/dist/js/bootstrap.js"></script>
 
-
-    <style>
-        .hexbin-hexagon {
-            stroke: #000;
-            stroke-width: 1px;
-        }
-        #overlay {
-            position: fixed; /* Sit on top of the page content */
-           /* Hidden by default */
-            width: 100px; /* Full width (cover the whole page) */
-            height: 100px; /* Full height (cover the whole page) */
-            background-color: rgba(0,0,0,0.1);
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 2000; /* Specify a stack order in case you're using a different order for other elements */
-            cursor: pointer; /* Add a pointer on hover */
-        }
-    </style>
+    <link rel="stylesheet" href="/styles/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+
 
 </head>
 <body>
-<div id="overlay"><h1>asdsda</h1></div>
-<div id="map" style="width: 100%; height: 100%; border: 1px solid #ccc">
+<div>
 
-sadsad
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Map</a>
+        </li>
+        <li role="presentation">
+            <a href="#data" aria-controls="profile" role="tab" data-toggle="tab">Data</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+            <div id="overlay">
+                <!--<input id="readfile" type="file" onchange="handleFile(event)"/>-->
+            </div>
+            <!--PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
+            <div id="map" style="width: 100%; height: 100%; border: 1px solid #ccc">
+            </div>
+            <!--END OF PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
+        </div>
+        <div role="tabpanel" class="tab-pane container" id="data">
+            <label class="btn btn-default btn-file">
+                Browse: <input id="readfile" type="file" onchange="handleFile(event)"/>
+            </label>
+
+            <table class="table table-bordered" id="data-table">
+               <tbody>
+
+               </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
+
+
+
 
 </body>
 <script>
@@ -44,7 +68,7 @@ sadsad
         osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
     map = new L.Map('map', {layers: [osm], center: new L.LatLng(center[0], center[1]), zoom: 12});
     var options = {
-        radius : 12,
+        radius: 12,
         opacity: 0.5,
         duration: 500
     };
@@ -53,27 +77,35 @@ sadsad
 
     hexLayer
         .radiusRange([6, 11])
-        .lng(function(d) { return d[0]; })
-        .lat(function(d) { return d[1]; })
-        .colorValue(function(d) { return d.length; })
-        .radiusValue(function(d) { return d.length; });
+        .lng(function (d) {
+            return d[0];
+        })
+        .lat(function (d) {
+            return d[1];
+        })
+        .colorValue(function (d) {
+            return d.length;
+        })
+        .radiusValue(function (d) {
+            return d.length;
+        });
 
-//    var latFn = d3.randomNormal(center[0], 1);
-//    var longFn = d3.randomNormal(center[1], 1);
+    //    var latFn = d3.randomNormal(center[0], 1);
+    //    var longFn = d3.randomNormal(center[1], 1);
     var latFn = 1.352;
     var longFn = 103.81981;
 
-    var generateData = function(){
+    var generateData = function () {
         var data = [];
-        for(i=0; i<1000; i++){
+        for (i = 0; i < 1000; i++) {
             const long = longFn;
             const lat = latFn;
-            data.push([long,  lat]);
+            data.push([long, lat]);
 //            data.push(103.8198, 1.3521)
         }
         hexLayer.data(data);
     };
-generateData();
+    generateData();
 
 </script>
 </html>
