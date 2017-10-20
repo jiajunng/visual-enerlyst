@@ -5,7 +5,10 @@
     <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
     <script src="https://rawgit.com/Asymmetrik/leaflet-d3/master/dist/leaflet-d3.js" charset="utf-8"></script>
     <script src="/scripts/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="/javascripts/dataupload.js"></script>
+
+
+
+
     <script src="/scripts/xlsx/dist/xlsx.full.min.js"></script>
     <script src="/scripts/jquery/dist/jquery.min.js"></script>
     <script src="/scripts/bootstrap/dist/js/bootstrap.js"></script>
@@ -33,7 +36,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
-            <div id="overlay">
+            <div id="overlay" style="overflow:auto">
                 <!--<input id="readfile" type="file" onchange="handleFile(event)"/>-->
             </div>
             <!--PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
@@ -56,56 +59,8 @@
 
 </div>
 
-
-
-
+<script src="/javascripts/mapfunctions.js"></script>
+<script src="/javascripts/dataupload.js"></script>
 </body>
-<script>
-    var center = [1.3521, 103.8198];
 
-    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
-    map = new L.Map('map', {layers: [osm], center: new L.LatLng(center[0], center[1]), zoom: 12});
-    var options = {
-        radius: 12,
-        opacity: 0.5,
-        duration: 500
-    };
-    var hexLayer = L.hexbinLayer(options).addTo(map)
-    hexLayer.colorScale().range(['white', 'blue']);
-
-    hexLayer
-        .radiusRange([6, 11])
-        .lng(function (d) {
-            return d[0];
-        })
-        .lat(function (d) {
-            return d[1];
-        })
-        .colorValue(function (d) {
-            return d.length;
-        })
-        .radiusValue(function (d) {
-            return d.length;
-        });
-
-    //    var latFn = d3.randomNormal(center[0], 1);
-    //    var longFn = d3.randomNormal(center[1], 1);
-    var latFn = 1.352;
-    var longFn = 103.81981;
-
-    var generateData = function () {
-        var data = [];
-        for (i = 0; i < 1000; i++) {
-            const long = longFn;
-            const lat = latFn;
-            data.push([long, lat]);
-//            data.push(103.8198, 1.3521)
-        }
-        hexLayer.data(data);
-    };
-    generateData();
-
-</script>
 </html>
