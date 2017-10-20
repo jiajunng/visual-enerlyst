@@ -69,10 +69,12 @@ hexLayer.dispatch()
 hexLayer
     .radiusRange([6, 13])
     .lng(function (d) {
-        return d[0];
+        // return d[0];
+        return d.long
     })
     .lat(function (d) {
-        return d[1];
+        // return d[1];
+        return d.lat
     })
     .colorValue(function (d) {
 
@@ -90,22 +92,39 @@ let generateData = function (dataPoints) {
     var data = [];
     dataPoints.forEach(function (singleData) {
         if (singleData.long !== undefined && singleData.lat !== undefined)
-            data.push([singleData.long, singleData.lat, {
-                "postal": singleData.postal,
-                "jan" : singleData.Jan,
-                "feb" : singleData.Feb,
-                "mar" : singleData.Mar,
-                "apr" : singleData.Apr,
-                "may" : singleData.May,
-                "jun" : singleData.Jun,
-                "jul" : singleData.Jul,
-                "aug" : singleData.Aug,
-                "sep" : singleData.Sep,
-                "oct" : singleData.Oct,
-                "nov" : singleData.Nov,
-                "dec" : singleData.Dec,
-            }]);
+        {
+            console.log(singleData.long, singleData.lat)
+            data.push(
+                {
+                    "lat" : singleData.lat,
+                    "long" : singleData.long,
+                    "postal" : singleData.postal,
+                    "months" : [
+                        {"jan" : singleData.Jan},
+                        {"feb" : singleData.Feb},
+                        {"mar" : singleData.Mar},
+                        {"apr" : singleData.Apr},
+                        {"may" : singleData.May},
+                        {"jun" : singleData.Jun},
+                        {"jul" : singleData.Jul},
+                        {"aug" : singleData.Aug},
+                        {"sep" : singleData.Sep},
+                        {"oct" : singleData.Oct},
+                        {"nov" : singleData.Nov},
+                        {"dec" : singleData.Dec},
+                    ]
+                }
+            )
+
+        }
+
+
     })
     hexLayer.data(data);
+
+
+
+
+
 
 };
