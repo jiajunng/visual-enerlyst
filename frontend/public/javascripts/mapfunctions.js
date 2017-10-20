@@ -6,7 +6,7 @@ var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 map = new L.Map('map',
     {
         layers: [osm],
-        center: new L.LatLng(center[0],center[1]),
+        center: new L.LatLng(center[0], center[1]),
         zoom: 11,
         minZoom: 11,
         maxZoom: 15
@@ -58,30 +58,77 @@ hexLayer.dispatch()
         console.log({type: 'click', event: d, index: i, context: this});
 
         $('.points').remove();
-        let test = {};
-        d.forEach(function(single){
-            test[single.o[2].postal] = single.o[2];
-            $('#overlay').append('<div class="points">'+single.o[2].postal+'</div>');
-        })
+        let test1 = test(d);
+        alert(test1)
+        // d.forEach(function (single) {
+            //
+            // let postal = single.o.postal;
+            // let month = single.o.months;
+            // let totalConsumption = 0;
+            // month.forEach(function (value) {
+            //     let singleObj = Object.keys(value)[0];
+            //     let val = value[singleObj]
+            //     let monthConsumption = parseFloat(val.replace(',',''));
+            //     totalConsumption += monthConsumption;
+            //
+            //     // totalConsumption += parseFloat(value[Object.keys(value)[0]]);
+            // })
+            //
+            // $('#overlay').append('<div class="points">' + postal + ' ' + totalConsumption + '</div>');
+            //
+            //
+
+        // })
 
     });
+
+function test(d) {
+    var totalEnergyConsumption = 0;
+    var counter = 0;
+
+    d.forEach(function (singlePoint) {
+        var energyConsumption = 0;
+        let month = singlePoint.o.months;
+
+        for (var i = 0; i < month.length; i++) {
+            var d = month[i];
+            let stringConsumption = d[Object.keys(d)[0]];
+
+            if (stringConsumption === "s") {
+                counter++;
+                energyConsumption = 0;
+                break;
+            }else if (stringConsumption === "-"){
+                energyConsumption += 0;
+            }else{
+                let consumption = parseFloat(stringConsumption.replace(',', ''));
+                energyConsumption += consumption;
+            }
+        }
+
+        totalEnergyConsumption += energyConsumption;
+    })
+    if(isNaN(totalEnergyConsumption / (d.length - counter)))
+    {
+        return 0
+    }
+    return totalEnergyConsumption / (d.length - counter);
+}
 
 hexLayer
     .radiusRange([6, 13])
     .lng(function (d) {
-        return d[0];
+        // return d[0];
+        return d.long;
     })
     .lat(function (d) {
-        return d[1];
+        // return d[1];
+        return d.lat;
+
     })
     .colorValue(function (d) {
+        return test(d);
 
-        // d.forEach(function(singlePoint){
-        //     let test = singlePoint.o[2];
-        //     let jan = singlePoint[2].o.jan;
-        // })
-
-        return d.length;
     })
     .radiusValue(function (d) {
         return d.length;
@@ -90,21 +137,27 @@ let generateData = function (dataPoints) {
     var data = [];
     dataPoints.forEach(function (singleData) {
         if (singleData.long !== undefined && singleData.lat !== undefined)
-            data.push([singleData.long, singleData.lat, {
-                "postal": singleData.postal,
-                "jan" : singleData.Jan,
-                "feb" : singleData.Feb,
-                "mar" : singleData.Mar,
-                "apr" : singleData.Apr,
-                "may" : singleData.May,
-                "jun" : singleData.Jun,
-                "jul" : singleData.Jul,
-                "aug" : singleData.Aug,
-                "sep" : singleData.Sep,
-                "oct" : singleData.Oct,
-                "nov" : singleData.Nov,
-                "dec" : singleData.Dec,
-            }]);
+            data.push(
+                {
+                    "lat": singleData.lat,
+                    "long": singleData.long,
+                    "postal": singleData.postal,
+                    "months": [
+                        {"jan": singleData.Jan},
+                        {"feb": singleData.Feb},
+                        {"mar": singleData.Mar},
+                        {"apr": singleData.Apr},
+                        {"may": singleData.May},
+                        {"jun": singleData.Jun},
+                        {"jul": singleData.Jul},
+                        {"aug": singleData.Aug},
+                        {"sep": singleData.Sep},
+                        {"oct": singleData.Oct},
+                        {"nov": singleData.Nov},
+                        {"dec": singleData.Dec},
+                    ]
+                }
+            )
     })
     hexLayer.data(data);
 
