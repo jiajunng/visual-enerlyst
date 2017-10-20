@@ -1,8 +1,16 @@
 var center = [1.3521, 103.8198];
 
-var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
+var osm = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 18
+});
+
+// var osmUrl = 'http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+//     osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+//     osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+
 map = new L.Map('map',
     {
         layers: [osm],
@@ -11,10 +19,14 @@ map = new L.Map('map',
         minZoom: 11,
         maxZoom: 15
     });
+
 var options = {
     radius: 12,
-    opacity: 0.5,
-    duration: 500
+    opacity: 0.7,
+    duration: 500,
+    //colorRange: ['#fffde6', '#f9e606'],
+    colorRange: ['#c9ebff', '#06a0f6'],
+    colorScaleExtent: [1, 10]
 };
 
 let southWest = L.latLng(1.227834, 103.608210),
@@ -52,7 +64,8 @@ var hexLayer = L.hexbinLayer(options)
             })
         ]
     }))
-hexLayer.colorScale().range(['white', 'blue']);
+// hexLayer.colorScale().range(['#fffde6', '#f9e606']);
+// hexLayer.colorScaleExtent([1,10])
 hexLayer.dispatch()
     .on('click', function (d, i) {
         console.log({type: 'click', event: d, index: i, context: this});
