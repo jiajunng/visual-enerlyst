@@ -1,26 +1,38 @@
+body{
+    padding: 3px;
+
+}
 .hexbin-hexagon {
     stroke: #000;
     stroke-width: 1px;
 }
 
 #map {
-
     width: 60%;
-    /*float:right;*/
     height: 100%;
     border: 1px solid #ccc;
     height: 100%;
     padding: 50px 0 0px 0;
     position: fixed;
+    left: 0;
+}
+
+#detailedPointsMap {
+    width: 40%;
+    height: 100%;
+    border: 1px solid #ccc;
+    height: 50%;
+    padding: 50px 0 0px 0;
+    position: fixed;
     right: 0;
 }
 
-#leftpanel {
-    /*background-color: rgba(0, 0, 0, 0.1);*/
-    /*height: 100%;*/
-    /*padding: 50px 0 0px 0;*/
+#rightpanel {
+    height: 100%;
+    padding:0;
+    position: fixed;
+    right: 0;
     overflow-y: auto;
-
     transition: all .5s linear;
     -moz-transition: all .5s linear;
     -webkit-transition: all .5s linear;

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
 
+
 </head>
 <body>
 
@@ -35,26 +36,71 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
-            <div id="leftpanel" style="overflow:auto">
-                 <span class="toggle-button bs-tooltip" style="float:right; display: inline-block; cursor: pointer; margin-right:10px"
-                       data-toggle="tooltip" data-placement="left" title="Click to toggle map">
-                     <!--toggle hide/show map-->
-                     <i class="fa fa-2x fa-cog">
-                    </i>
-                    </span>
-                <div class="leftpanel-component">
+            <!--<div id="leftpanel" style="overflow:auto">-->
+                 <!--<span class="toggle-button bs-tooltip" style="float:right; display: inline-block; cursor: pointer; margin-right:10px"-->
+                       <!--data-toggle="tooltip" data-placement="left" title="Click to toggle map">-->
+                     <!--&lt;!&ndash;toggle hide/show map&ndash;&gt;-->
+                     <!--<i class="fa fa-2x fa-cog">-->
+                    <!--</i>-->
+                    <!--</span>-->
+                <!--<div class="leftpanel-component">-->
 
-                    asdsad
-                </div>
-                <div class="leftpanel-component">
+                    <!--<span class="dropdown">-->
+                        <!--<button class="btn btn-default dropdown-toggle"-->
+                                <!--type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                            <!--Dropdown-->
+                            <!--<span class="caret"></span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                            <!--<li><a href="#">Action</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                        <!--</ul>-->
+                    <!--</span>-->
+                    <!--asdsad-->
+            <!--</div>-->
+                <!--<div class="leftpanel-component" id="detailedPointsMap">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE&ndash;&gt;-->
+            <!--<div id="map"></div>-->
+            <!--&lt;!&ndash;END OF PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE&ndash;&gt;-->
 
-                    asdsad
-                </div>
-                <!--<input id="readfile" type="file" onchange="handleFile(event)"/>-->
-            </div>
+
             <!--PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
             <div id="map"></div>
             <!--END OF PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
+            <div id="rightpanel">
+                 <!--<span class="toggle-button bs-tooltip" style="float:right; display: inline-block; cursor: pointer; margin-right:10px"-->
+                       <!--data-toggle="tooltip" data-placement="left" title="Click to toggle map">-->
+                     <!--&lt;!&ndash;toggle hide/show map&ndash;&gt;-->
+                     <!--<i class="fa fa-2x fa-cog">-->
+                    <!--</i>-->
+                    <!--</span>-->
+                <div class="leftpanel-component">
+
+                    <!--<span class="dropdown">-->
+                        <!--<button class="btn btn-default dropdown-toggle"-->
+                                <!--type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+                            <!--Dropdown-->
+                            <!--<span class="caret"></span>-->
+                        <!--</button>-->
+                        <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                            <!--<li><a href="#">Action</a></li>-->
+                            <!--<li><a href="#">Another action</a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                        <!--</ul>-->
+                    <!--</span>-->
+                    <!--Test Text-->
+                </div>
+                <div class="leftpanel-component" id="detailedPointsMap">
+                </div>
+            </div>
+
         </div>
         <div role="tabpanel" class="tab-pane container" id="data">
             <label class="btn btn-default btn-file">
@@ -72,6 +118,7 @@
 </div>
 
 <script src="/javascripts/mapfunctions.js"></script>
+<script src="/javascripts/detailedPointsMapFunctions.js"></script>
 <script src="/javascripts/dataupload.js"></script>
 <script src="/javascripts/togglemap.js"></script>
 

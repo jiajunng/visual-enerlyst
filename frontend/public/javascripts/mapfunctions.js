@@ -24,9 +24,11 @@ var options = {
     radius: 12,
     opacity: 0.7,
     duration: 500,
-    //colorRange: ['#fffde6', '#f9e606'],
-    colorRange: ['#c9ebff', '#06a0f6'],
-    colorScaleExtent: [1, 10]
+    // colorRange: ['#fffde6', '#d8c700'],
+    // colorRange: ['#fffde6', '#f9e606'],
+
+    // colorRange: ['#c9ebff', '#06a0f6'],
+    // colorScaleExtent: [1, 10]
 };
 
 let southWest = L.latLng(1.227834, 103.608210),
@@ -42,7 +44,7 @@ L.HexbinHoverHandler.myHoverHandler = function () {
             // hexLayer - reference to the L.HexbinLayer instance
             // data - reference to the data bound to the hovered hexbin
             // this - D3 wrapped DOM element for hovered hexbin
-            console.log(data)
+            // console.log(data)
 
         },
         mouseout: function (hexLayer, data) {
@@ -64,6 +66,7 @@ var hexLayer = L.hexbinLayer(options)
             })
         ]
     }))
+hexLayer.colorScale().range(['white', 'blue']);
 // hexLayer.colorScale().range(['#fffde6', '#f9e606']);
 // hexLayer.colorScaleExtent([1,10])
 hexLayer.dispatch()
@@ -73,6 +76,7 @@ hexLayer.dispatch()
         $('.points').remove();
         let test1 = test(d);
         alert(test1)
+        plotMarkersInSelectedHexbin(d);
         // d.forEach(function (single) {
             //
             // let postal = single.o.postal;
