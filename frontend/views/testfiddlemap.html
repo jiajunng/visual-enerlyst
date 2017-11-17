@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
 
+
 </head>
 <body>
 
@@ -35,26 +36,22 @@
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
-            <div id="leftpanel" style="overflow:auto">
-                 <span class="toggle-button bs-tooltip" style="float:right; display: inline-block; cursor: pointer; margin-right:10px"
-                       data-toggle="tooltip" data-placement="left" title="Click to toggle map">
-                     <!--toggle hide/show map-->
-                     <i class="fa fa-2x fa-cog">
-                    </i>
-                    </span>
-                <div class="leftpanel-component">
 
-                    asdsad
-                </div>
-                <div class="leftpanel-component">
 
-                    asdsad
-                </div>
-                <!--<input id="readfile" type="file" onchange="handleFile(event)"/>-->
-            </div>
             <!--PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
             <div id="map"></div>
             <!--END OF PLACEHOLDER FOR THE ENTIRE MAP DO NOT REMOVE-->
+            <div id="rightpanel">
+
+                <div class="leftpanel-component" id="knn">
+                    <!--<svg ></svg>-->
+
+
+                </div>
+                <div class="leftpanel-component" id="detailedPointsMap">
+                </div>
+            </div>
+
         </div>
         <div role="tabpanel" class="tab-pane container" id="data">
             <label class="btn btn-default btn-file">
@@ -72,6 +69,8 @@
 </div>
 
 <script src="/javascripts/mapfunctions.js"></script>
+<script src="/javascripts/detailedPointsMapFunctions.js"></script>
+<script src="/javascripts/lineChart.js"></script>
 <script src="/javascripts/dataupload.js"></script>
 <script src="/javascripts/togglemap.js"></script>
 

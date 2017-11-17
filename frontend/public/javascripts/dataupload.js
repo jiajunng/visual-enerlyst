@@ -1,3 +1,4 @@
+var mainColor = 'red'
 let rABS = true; // true: readAsBinaryString ; false: readAsArrayBuffer
 
 function handleFile(e) {
@@ -11,27 +12,23 @@ function handleFile(e) {
         let sheet_name_list = workbook.SheetNames;
         datapoints = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
 
-        $('#data-table').append('<tr><th>Postal Code</th><th>Lat</th><th>Lng</th><th>Jan</th>' +
-            '<th>Feb</th><th>Mar</th><th>Apr</th><th>May</th><th>Jun</th>' +
-            '<th>Jul</th><th>Aug</th><th>Sep</th><th>Oct</th><th>Nov</th><th>Dec</th></tr>');
+        $('#data-table').append('<tr><th>Postal Code</th><th>1-room / 2-room</th><th>3-room</th><th>4-room</th>' +
+            '<th>5-room/ Executive</th><th>Postal Code Average</th><th>Year</th><th>Month</th><th>Lat</th>' +
+            '<th>Long</th></tr>');
         datapoints.forEach(function(data){
             $('#data-table').append('<tr><td>'+data.postal+'</td><td>'+
+                data.oneroom+'</td><td>'+
+                data.threeroom+'</td><td>'+
+                data.fourroom+'</td><td>'+
+                data.fiveroom+'</td><td>'+
+                data.average+'</td><td>'+
+                data.year+'</td><td>'+
+                data.month+'</td><td>'+
                 data.lat+'</td><td>'+
-                data.long+'</td><td>'+
-                data.Jan+'</td><td>'+
-                data.Feb+'</td><td>'+
-                data.Mar+'</td><td>'+
-                data.Apr+'</td><td>'+
-                data.May+'</td><td>'+
-                data.Jun+'</td><td>'+
-                data.Jul+'</td><td>'+
-                data.Aug+'</td><td>'+
-                data.Sep+'</td><td>'+
-                data.Oct+'</td><td>'+
-                data.Nov+'</td><td>'+
-                data.Dec+'</td></tr>');
+                data.long+'</td></tr>');
         })
         generateData(datapoints)
+        avgOfAvgs(datapoints, mainColor)
         return datapoints;
     };
     if (rABS)
