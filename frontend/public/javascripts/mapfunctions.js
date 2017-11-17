@@ -23,10 +23,10 @@ map = new L.Map('map',
 var options = {
     radius: 12,
     opacity: 0.7,
-    duration: 500,
-    //colorRange: ['#fffde6', '#f9e606'],
-    colorRange: ['#c9ebff', '#06a0f6'],
-    colorScaleExtent: [1, 10]
+    duration: 500
+    // colorRange: ['#fffde6', '#f9e606'],
+    // colorRange: ['#c9ebff', '#06a0f6'],
+    // colorScaleExtent: [1, 10]
 };
 
 let southWest = L.latLng(1.227834, 103.608210),
@@ -66,13 +66,18 @@ var hexLayer = L.hexbinLayer(options)
     }))
 // hexLayer.colorScale().range(['#fffde6', '#f9e606']);
 // hexLayer.colorScaleExtent([1,10])
+var hexBinColor = "blue"
+
+hexLayer.colorScale().range(['white', 'blue']);
 hexLayer.dispatch()
     .on('click', function (d, i) {
         console.log({type: 'click', event: d, index: i, context: this});
 
         $('.points').remove();
-        let test1 = test(d);
-        alert(test1)
+        // let test1 = avgInEachHexbin(d);
+        cleanedData = cleanSelectedData(d);
+        avgOfAvgs(cleanedData, hexBinColor);
+        // alert(test1)
         // d.forEach(function (single) {
             //
             // let postal = single.o.postal;
@@ -95,37 +100,13 @@ hexLayer.dispatch()
 
     });
 
-function test(d) {
-    var totalEnergyConsumption = 0;
-    var counter = 0;
-
-    d.forEach(function (singlePoint) {
-        var energyConsumption = 0;
-        let month = singlePoint.o.months;
-
-        for (var i = 0; i < month.length; i++) {
-            var d = month[i];
-            let stringConsumption = d[Object.keys(d)[0]];
-
-            if (stringConsumption === "s") {
-                counter++;
-                energyConsumption = 0;
-                break;
-            }else if (stringConsumption === "-"){
-                energyConsumption += 0;
-            }else{
-                let consumption = parseFloat(stringConsumption.replace(',', ''));
-                energyConsumption += consumption;
-            }
-        }
-
-        totalEnergyConsumption += energyConsumption;
+function avgInEachHexbin(pointsInHexbin) {
+    let energyUsedSum = 0;
+    pointsInHexbin.forEach(function (singlePoint) {
+        energyUsedSum += parseFloat(singlePoint.o.average);
     })
-    if(isNaN(totalEnergyConsumption / (d.length - counter)))
-    {
-        return 0
-    }
-    return totalEnergyConsumption / (d.length - counter);
+    let avgConsumption = energyUsedSum/pointsInHexbin.length;
+    return avgConsumption
 }
 
 hexLayer
@@ -137,9 +118,9 @@ hexLayer
     .lat(function (d) {
         return d.lat;
 
-    })
-    .colorValue(function (d) {
-        return test(d);
+    })//will be called for each hexbin
+    .colorValue(function (listOfPointsInHexbin) {
+        return avgInEachHexbin(listOfPointsInHexbin);
 
     })
     .radiusValue(function (d) {
@@ -152,32 +133,52 @@ let generateData = function (dataPoints) {
 
             data.push(
                 {
+                    // "lat": singleData.lat,
+                    // "long": singleData.long,
+                    // "postal": singleData.postal,
+                    // "months": [
+                    //     {"jan": singleData.Jan},
+                    //     {"feb": singleData.Feb},
+                    //     {"mar": singleData.Mar},
+                    //     {"apr": singleData.Apr},
+                    //     {"may": singleData.May},
+                    //     {"jun": singleData.Jun},
+                    //     {"jul": singleData.Jul},
+                    //     {"aug": singleData.Aug},
+                    //     {"sep": singleData.Sep},
+                    //     {"oct": singleData.Oct},
+                    //     {"nov": singleData.Nov},
+                    //     {"dec": singleData.Dec},
+                    // ]
+
                     "lat": singleData.lat,
                     "long": singleData.long,
                     "postal": singleData.postal,
-                    "months": [
-                        {"jan": singleData.Jan},
-                        {"feb": singleData.Feb},
-                        {"mar": singleData.Mar},
-                        {"apr": singleData.Apr},
-                        {"may": singleData.May},
-                        {"jun": singleData.Jun},
-                        {"jul": singleData.Jul},
-                        {"aug": singleData.Aug},
-                        {"sep": singleData.Sep},
-                        {"oct": singleData.Oct},
-                        {"nov": singleData.Nov},
-                        {"dec": singleData.Dec},
-                    ]
+                    "1room": singleData.oneroom,
+                    "3room": singleData.threeroom,
+                    "4room": singleData.fourroom,
+                    "5room": singleData.fiveroom,
+                    "average": singleData.average,
+                    "month": singleData.month
                 }
             )
 
     })
     hexLayer.data(data);
-
-
-
-
-
-
 };
+
+function cleanSelectedData(dataPoints){
+    var data = []
+    dataPoints.forEach(function (singleData) {
+        data.push(
+            {
+            "average": singleData.o.average,
+            "month": singleData.o.month,
+                "lat": singleData.o.lat,
+                "long": singleData.o.long
+            }
+        )
+    })
+    return data
+
+}
