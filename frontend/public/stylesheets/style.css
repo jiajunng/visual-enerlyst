@@ -28,6 +28,7 @@ body{
 }
 
 #rightpanel {
+    width:40%;
     height: 100%;
     padding:0;
     position: fixed;
@@ -40,7 +41,8 @@ body{
 }
 
 .leftpanel-component {
-    height: 50%
+    right:0;
+    height:50%
 }
 
 .hexbin-container:hover .hexbin-hexagon {
