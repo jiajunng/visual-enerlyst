@@ -40,23 +40,23 @@ function plotMarkersInSelectedHexbin(d) {
     pointsArray=[]
 
     d.forEach(function (single) {
-        var o = single.o;
-        var marker = new L.Marker(new L.LatLng(o.lat, o.long), {icon: myIcon}).bindPopup("" +
-            "<div id='"+o.postal+"'><b>Hello world!</b><br />I am a popup.</div>")
+        var oneRecord = single.values[0].o;
+        var marker = new L.Marker(new L.LatLng(oneRecord.lat, oneRecord.long), {icon: myIcon}).bindPopup("" +
+            "<div id='"+oneRecord.postal+"'><b>Hello world!</b><br />I am a popup.</div>")
             .on('click', function(e){
                 console.log(e.target.postal)
                 console.log(e.target.lat)
                 console.log(e.target.lng)
         });
-        marker.postal = o.postal;
-        marker.lat = o.lat;
-        marker.lng = o.long
+        marker.postal = oneRecord.postal;
+        marker.lat = oneRecord.lat;
+        marker.lng = oneRecord.long
         pointsArray.push(marker);
         smallMap.addLayer(marker);
     })
 
     var group = new L.featureGroup(pointsArray);
     smallMap.fitBounds(group.getBounds().pad(0.5));
-    console.log(d)
+    // console.log(d)
 
 }
