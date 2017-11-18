@@ -22,8 +22,11 @@ map = new L.Map('map',
 
 var options = {
     radius: 12,
-    opacity: 0.7,
+    opacity: 0.9,
     duration: 500,
+    colorScaleExtent: [ 1, undefined ],
+    radiusScaleExtent: [ 1, undefined ],
+    colorRange: [ '#ffffff', '#000000' ],
     // colorRange: ['#fffde6', '#d8c700'],
     // colorRange: ['#fffde6', '#f9e606'],
     // colorRange: ['#c9ebff', '#06a0f6'],
@@ -60,28 +63,31 @@ var hexLayer = L.hexbinLayer(options)
             L.HexbinHoverHandler.myHoverHandler(),
             L.HexbinHoverHandler.tooltip({
                 tooltipContent: function (d) {
-                    return d.length + ' data points';
+                    let uniquePoints = getUniquePointsInData(d);
+                    return uniquePoints.length + ' Postal Codes';
+
                 }
             })
         ]
     }))
-hexLayer.colorScale().range(['white', 'blue']);
+// hexLayer.colorScale().range(['white', 'blue']);
 // hexLayer.colorScale().range(['#fffde6', '#f9e606']);
 // hexLayer.colorScaleExtent([1,10])
-var hexBinColor = "blue"
 
-hexLayer.colorScale().range(['white', 'blue']);
+
+// hexLayer.colorScale().range(['white', 'blue']);
 hexLayer.dispatch()
     .on('click', function (d, i) {
-        console.log({type: 'click', event: d, index: i, context: this});
+        // console.log({type: 'click', event: d, index: i, context: this});
 
         $('.points').remove();
 
+        console.log("yearly average of each postal code in this hexbin "+avgInEachHexbin(d));
 
-        plotMarkersInSelectedHexbin(d);
 
+        plotMarkersInSelectedHexbin(getUniquePointsInData(d));
         cleanedData = cleanSelectedData(d);
-        avgOfAvgs(cleanedData, hexBinColor);
+        avgOfAvgs(cleanedData, hexbinAverageLineColor);
 
 
     });
@@ -110,7 +116,11 @@ hexLayer
 
     })
     .radiusValue(function (d) {
-        return d.length;
+        // return d.length;
+
+        let postalPoints = getUniquePointsInData(d);
+        return postalPoints.length;
+
     });
 let generateData = function (dataPoints) {
     var data = [];
@@ -152,6 +162,16 @@ let generateData = function (dataPoints) {
     })
     hexLayer.data(data);
 };
+
+function getUniquePointsInData(data){
+
+    var groupedByPostal = d3.nest()
+        .key(function(d) {
+            return d.o.postal;
+        })
+        .entries(data);
+    return groupedByPostal;
+}
 
 function cleanSelectedData(dataPoints){
     var data = []
