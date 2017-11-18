@@ -87,7 +87,7 @@ hexLayer.dispatch()
 
         plotMarkersInSelectedHexbin(getUniquePointsInData(d));
         cleanedData = cleanSelectedData(d);
-        avgOfAvgs(cleanedData, hexbinAverageLineColor);
+        avgOfAvgs(cleanedData, false);
 
 
     });

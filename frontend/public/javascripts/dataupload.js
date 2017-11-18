@@ -1,5 +1,4 @@
-var nationalAverageLineColor = '#45a879'
-var hexbinAverageLineColor = "#0f1a68"
+
 
 let rABS = true; // true: readAsBinaryString ; false: readAsArrayBuffer
 function handleFile(e) {
@@ -35,7 +34,7 @@ function handleFile(e) {
             //     data.long+'</td></tr>');
         })
         generateData(datapoints)
-        avgOfAvgs(datapoints, nationalAverageLineColor)
+        avgOfAvgs(datapoints, true)
         return datapoints;
     };
     if (rABS)
