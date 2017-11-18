@@ -1,8 +1,10 @@
 let nationalAverageLineColor = '#45a879'
 let hexbinAverageLineColor = "#0f1a68"
 let maxY = 0;
-let nationalPoints, tooltipLine, x, y, tipbox;
+let nationalPoints, tooltipLine, x, y, tipbox, hexbinPoints;
 const tooltip = d3.select('#tooltip');
+const tooltip2 = d3.select('#tooltip2');
+const tooltipIndv = d3.select('#tooltipIndv');
 
 // Define margins, dimensions, and some line colors
 const margin = {top: 40, right: 120, bottom: 30, left: 40};
@@ -24,15 +26,15 @@ function drawChart(averageOfEachMonth, isNational) {
         .attr("height", '100%')
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-    tooltipLine  = chart.append('line');
+    tooltipLine = chart.append('line');
     var result = averageOfEachMonth.map(a => a.average);
     console.log(result);
     // d3.values(averageOfEachMonth)
     if (d3.max(result) > maxY) {
         maxY = d3.max(result);
     }
-     x = d3.scaleLinear().domain([1, 12]).range([0, width]);
-     y = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
+    x = d3.scaleLinear().domain([1, 12]).range([0, width]);
+    y = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
 
 
 // Add the axes and a title
@@ -55,6 +57,7 @@ function drawChart(averageOfEachMonth, isNational) {
     if (isNational) {
         nationalPoints = averageOfEachMonth;
     } else {
+        hexbinPoints = averageOfEachMonth;
         chart.selectAll()
             .data(averageOfEachMonth).enter()
             .append('path')
@@ -72,10 +75,9 @@ function drawChart(averageOfEachMonth, isNational) {
         .attr('stroke-width', 1)
         .datum(nationalPoints)
         .attr('d', line);
-
     tipBox = chart.append('rect')
-        .attr('width', 200)
-        .attr('height', 200)
+        .attr('width', width)
+        .attr('height', height)
         .attr('opacity', 0)
         .on('mousemove', drawTooltip)
         .on('mouseout', removeTooltip);
@@ -86,57 +88,77 @@ function removeTooltip() {
 }
 
 function drawTooltip(sd) {
+    var x0 = x.invert(d3.mouse(this)[0]);
+    // i = bisectDate(data, x0, 1),
+    // d0 = data[i - 1],
+    // d1 = data[i],
+    // d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+    var b = (x.invert(d3.mouse(tipBox.node())[0]) + 5)
+    var a = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10)
+    var tes = Math.floor(x0);
+    // console.log((d3.mouse(tipBox.node())[0]));
     // const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10) * 10;
     //
     // states.sort((a, b) => {
     //     return b.history.find(h => h.year == year).population - a.history.find(h => h.year == year).population;
     // })
-    const year =  Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10) * 10;
+    const year = 6;
     tooltipLine.attr('stroke', 'black')
-        .attr('x1', x(year))
-        .attr('x2', x(year))
+        .attr('x1', x(tes))
+        .attr('x2', x(tes))
         .attr('y1', 0)
         .attr('y2', height);
 
-    tooltip.html(2)
+    tooltip.html(" ")
         .style('display', 'block')
         .style('left', 0)
-        .style('top',0)
+        .style('top', 0)
         .selectAll()
         .data(nationalPoints).enter()
         .append('div')
         .style('color', d => d.color)
-        // .html(d => d.name + ': ' + d.history.find(h => h.year == year).population);
-        .html(d => "<style='color:red'>KNN<br>KNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNN<br>KNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNK<br>KNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNKNNK</style>");
+        .html(function (d, i) {
+                if (d.month === tes) {
+                    return d.average
+                }
+
+            }
+        );
+    if(hexbinPoints!==undefined)
+    {
+        tooltip2.html(" ")
+            .style('display', 'block')
+            .style('right', 0)
+            .style('top', 0)
+            .selectAll()
+            .data(hexbinPoints).enter()
+            .append('div')
+            .style('color',nationalAverageLineColor)
+            .html(function (d, i) {
+                    if (d.month === tes) {
+                        return d.average
+                    }
+
+                }
+            );
+    }
+
+    // tooltipIndv.html(" ")
+    //     .style('display', 'block')
+    //     .style('right', 0)
+    //     .style('top', 0)
+    //     .selectAll()
+    //     .data(nationalPoints).enter()
+    //     .append('div')
+    //     .style('color', d => d.color)
+    //     .html(function (d, i) {
+    //             if (d.month === tes) {
+    //                 return d.average
+    //             }
+    //
+    //         }
+    //     );
 }
-// function removeTooltip() {
-//     if (tooltip) tooltip.style('display', 'none');
-//     if (tooltipLine) tooltipLine.attr('stroke', 'none');
-// }
-//
-// function drawTooltip() {
-//     const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10) * 10;
-//
-//     states.sort((a, b) => {
-//         return b.history.find(h => h.year == year).population - a.history.find(h => h.year == year).population;
-//     })
-//
-//     tooltipLine.attr('stroke', 'black')
-//         .attr('x1', x(year))
-//         .attr('x2', x(year))
-//         .attr('y1', 0)
-//         .attr('y2', height);
-//
-//     tooltip.html(year)
-//         .style('display', 'block')
-//         .style('left', d3.event.pageX + 20)
-//         .style('top', d3.event.pageY - 20)
-//         .selectAll()
-//         .data(states).enter()
-//         .append('div')
-//         .style('color', d => d.color)
-//         .html(d => d.name + ': ' + d.history.find(h => h.year == year).population);
-// }
 
 
 function avgOfAvgs(dataPoints, isNational) {
