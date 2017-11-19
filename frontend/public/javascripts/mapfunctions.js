@@ -84,9 +84,9 @@ hexLayer.dispatch()
 
         console.log("yearly average of each postal code in this hexbin "+avgInEachHexbin(d));
 
-
         plotMarkersInSelectedHexbin(getUniquePointsInData(d));
         cleanedData = cleanSelectedData(d);
+        console.log(d);
         avgOfAvgs(cleanedData, false);
 
 
@@ -122,9 +122,9 @@ hexLayer
         return postalPoints.length;
 
     });
-let generateData = function (dataPoints) {
-    var data = [];
-    dataPoints.forEach(function (singleData) {
+let generateData = function (year) {
+    var data = namespace.allData.getItem(year);
+    data.forEach(function (singleData) {
         if (singleData.long !== undefined && singleData.lat !== undefined)
 
             data.push(

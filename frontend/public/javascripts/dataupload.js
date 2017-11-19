@@ -1,11 +1,14 @@
-
+namespace = { allData: new HashTable() };
 
 let rABS = true; // true: readAsBinaryString ; false: readAsArrayBuffer
+
 function handleFile(e) {
     myFunction();
     let files = e.target.files;
     let f = files[0];
     let reader = new FileReader();
+    // let allData = new HashTable();
+
     reader.onload = function (e) {
 
         let data = e.target.result;
@@ -13,28 +16,18 @@ function handleFile(e) {
         let workbook = XLSX.read(data, {type: rABS ? 'binary' : 'array'});
         let sheet_name_list = workbook.SheetNames;
         myFunction();
-        datapoints = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
-        console.log(datapoints)
 
-        // $('#data-table').append('<tr><th>Postal Code</th><th>1-room / 2-room</th><th>3-room</th><th>4-room</th>' +
-        //     '<th>5-room/ Executive</th><th>Postal Code Average</th><th>Year</th><th>Month</th><th>Lat</th>' +
-        //     '<th>Long</th></tr>');
+        sheet_name_list.forEach(function (sheet) {
+            var yearData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet])
+            var sheetStr = sheet.toString()
+            namespace.allData.setItem(sheetStr, yearData)
+        })
+        // datapoints = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
+        // console.log(datapoints)
 
-        // datapoints.forEach(function(data){
-        //     // var someText = data.postal+'\n';
-        //     // $('#data-table').append(document.createTextNode(someText));
-        //     // console.log(someText)
-        //     $('#data-table').append('<tr><td>'+data.postal+'</td><td>'+
-        //         data.oneroom+'</td><td>'+
-        //         data.threeroom+'</td><td>'+
-        //         data.fourroom+'</td><td>'+
-        //         data.fiveroom+'</td><td>'+
-        //         data.average+'</td><td>'+
-        //         data.year+'</td><td>'+
-        //         data.month+'</td><td>'+
-        //         data.lat+'</td><td>'+
-        //         data.long+'</td></tr>');
-        // })
+        // console.log(namespace.allData)
+
+        // print table
 
         var html = '<table class="table table-bordered"><theader>' +
             '<th>Postal Code</th>' +
@@ -49,7 +42,9 @@ function handleFile(e) {
             '<th>Long</th>' +
             '</theader>';
 
-        datapoints.forEach(function(data){
+        var year = namespace.allData.getItem(sheet_name_list[0])
+        // console.log(year)
+        year.forEach(function(data){
             html += '<tr>' +
                 '<td>'+ data.postal + '</td>' +
                 '<td>'+ data.oneroom + '</td>' +
@@ -66,32 +61,44 @@ function handleFile(e) {
         html += '</table>';
         $('#data-table').append(html);
 
-        // $('#data-table').DataTable({
-        //     data: datapoints,
-        //     dataType: "json",
-        //     cache: false,
-        //     columns: [
-        //         { title: "postal" },
-        //         { title: "oneroom" },
-        //         { title: "threeroom" },
-        //         { title: "fourroom" },
-        //         { title: "fiveroom" },
-        //         { title: "average" },
-        //         { title: "year" },
-        //         { title: "month" },
-        //         { title: "lat" },
-        //         { title: "long" }
-        //     ]
-        // });
+        // print dropdown menu for year
+        // --- move this so that ppl wont assume table can be changed with the year selected
 
-        generateData(datapoints)
-        avgOfAvgs(datapoints, true)
-        return datapoints;
+        html = '';
+        var count = 1;
+        var keys = namespace.allData.keys()
+        keys.forEach(function (key) {
+            if (count === 1) {
+                html = '<select onChange="onYearChange(this.value);" name="year">';
+            }
+            // console.log(key)
+            html += '<option value="' + key + '">'+ key + '</option>'
+            count++;
+        })
+        html += '</select>';
+        $('#year-select').append(html);
+
+        generateData(sheet_name_list[0]);
+        // generateData(allData.getItem(sheet_name_list[0]));
+        // generateData(datapoints)    // change to dropdown menus' event handler
+
+        /** TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO TO DO **/
+
+        // avgOfAvgs(sheet_name_list[0], true)
+        avgOfAvgs(namespace.allData.getItem(sheet_name_list[0]), true) // need to change handling of data in method
+
+        // return datapoints;
+
     };
     if (rABS)
         reader.readAsBinaryString(f);
     else
         reader.readAsArrayBuffer(f);
+}
+
+function onYearChange(year) {
+    generateData(year);
+    avgOfAvgs(namespace.allData.getItem(year), true)
 }
 
 function csvToArray(csvString){
