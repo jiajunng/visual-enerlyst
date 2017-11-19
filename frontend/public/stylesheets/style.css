@@ -84,6 +84,11 @@ body {
     stroke-width: 2px;
     stroke-opacity: 1;
 }
+.dropdown{
+    width: 200px;
+    top:30px;
+    left:60px;
+}
 
 
 

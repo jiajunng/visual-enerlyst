@@ -78,6 +78,7 @@ var hexLayer = L.hexbinLayer(options)
 // hexLayer.colorScale().range(['white', 'blue']);
 hexLayer.dispatch()
     .on('click', function (d, i) {
+
         // console.log({type: 'click', event: d, index: i, context: this});
         d3.select('#map').select('.hexbinSelected').classed('hexbinSelected', false);
 
@@ -128,34 +129,6 @@ hexLayer
     });
 let generateData = function (year) {
     var data = namespace.allData.getItem(year);
-    // data.forEach(function (singleData) {
-    //     if (singleData.long !== undefined && singleData.lat !== undefined)
-    //
-    //         data.push(
-    //             {
-    //                 "year" : singleData.year,
-    //                 "lat": singleData.lat,
-    //                 "long": singleData.long,
-    //                 "postal": singleData.postal,
-    //                 "1room": singleData.oneroom,
-    //                 "3room": singleData.threeroom,
-    //                 "4room": singleData.fourroom,
-    //                 "5room": singleData.fiveroom,
-    //                 "average": singleData.average,
-    //                 "month": singleData.month,
-    //                 "addr" : singleData.address,
-    //             }
-    //         )
-    //
-    // })
-
-    var groupedByPostal = d3.nest()
-        .key(function(d) {
-            return d.postal;
-        })
-        .entries(data);
-    console.log(data);
-
     hexLayer.data(data);
 };
 

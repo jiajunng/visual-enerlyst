@@ -20,6 +20,12 @@ const height = 220
 // Load the data and draw a chart
 function drawChart(averageOfEachMonth, linetype) {
 
+    //sort
+    averageOfEachMonth.sort(function(a, b) {
+        // return parseFloat(a.average) - parseFloat(b.average);
+        return a.month - b.month
+    });
+
     d3.select("#knn")
         .select("svg").remove()
     // .selectAll("*")
@@ -194,6 +200,7 @@ function drawTooltip(sd) {
 
 function avgOfAvgs(dataPoints, linetype) {
     var data = [];
+
     let jan = 0, feb = 0, mar = 0, apr = 0, may = 0, jun = 0, jul = 0, aug = 0, sep = 0, oct = 0, nov = 0, dec = 0;
     let countJan = 0, countFeb = 0, countMar = 0, countApr = 0, countMay = 0, countJun = 0, countJul = 0, countAug = 0,
         countSep = 0, countOct = 0, countNov = 0, countDec = 0;
