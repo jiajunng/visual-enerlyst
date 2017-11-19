@@ -1,7 +1,11 @@
+let monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 let nationalAverageLineColor = '#45a879'
 let hexbinAverageLineColor = "#0f1a68"
+let singlePostalAverageColor = "#c1192a"
 let maxY = 0;
-let nationalPoints, tooltipLine, x, y, tipbox, hexbinPoints;
+let chart, nationalPoints, hexbinPoints, indivPoints, tooltipLine, x, y, tipbox;
 const tooltip = d3.select('#tooltip');
 const tooltip2 = d3.select('#tooltip2');
 const tooltipIndv = d3.select('#tooltipIndv');
@@ -14,13 +18,13 @@ const width = 430
 const height = 220
 
 // Load the data and draw a chart
-function drawChart(averageOfEachMonth, isNational) {
+function drawChart(averageOfEachMonth, linetype) {
 
     d3.select("#knn")
         .select("svg").remove()
     // .selectAll("*")
     // .remove()
-    let chart = d3.select("#knn")
+    chart = d3.select("#knn")
         .append("svg")
         .attr("width", '100%')
         .attr("height", '100%')
@@ -40,7 +44,7 @@ function drawChart(averageOfEachMonth, isNational) {
 // Add the axes and a title
     const xAxis = d3.axisBottom(x).tickFormat(d3.format('.4'));
     const yAxis = d3.axisLeft(y).tickFormat(d3.format('.2s'));
-    chart.append('text').html('Place Holder Title')
+    chart.append('text').html('Avg energy consumption by months').style('font-size','10px')
         .attr('x', 200);
 
     chart.append('g')
@@ -54,17 +58,20 @@ function drawChart(averageOfEachMonth, isNational) {
     let line = d3.line()
         .x(d => x(d.month))
         .y(d => y(d.average));
-    if (isNational) {
+    if (linetype==='national') {
         nationalPoints = averageOfEachMonth;
-    } else {
+    } else if(linetype ==='hexbin'){
         hexbinPoints = averageOfEachMonth;
+    }else
+    {   //single
+        indivPoints = averageOfEachMonth;
         chart.selectAll()
-            .data(averageOfEachMonth).enter()
+            .data(indivPoints).enter()
             .append('path')
             .attr('fill', 'none')
-            .attr('stroke', hexbinAverageLineColor)
+            .attr('stroke', singlePostalAverageColor)
             .attr('stroke-width', 1)
-            .datum(averageOfEachMonth)
+            .datum(indivPoints)
             .attr('d', line);
     }
     chart.selectAll()
@@ -75,12 +82,25 @@ function drawChart(averageOfEachMonth, isNational) {
         .attr('stroke-width', 1)
         .datum(nationalPoints)
         .attr('d', line);
+    if(hexbinPoints!==undefined)
+    {
+        chart.selectAll()
+            .data(hexbinPoints).enter()
+            .append('path')
+            .attr('fill', 'none')
+            .attr('stroke', hexbinAverageLineColor)
+            .attr('stroke-width', 1)
+            .datum(hexbinPoints)
+            .attr('d', line);
+    }
+
+
     tipBox = chart.append('rect')
         .attr('width', width)
         .attr('height', height)
         .attr('opacity', 0)
         .on('mousemove', drawTooltip)
-        .on('mouseout', removeTooltip);
+        // .on('mouseout', removeTooltip);
 }
 function removeTooltip() {
     if (tooltip) tooltip.style('display', 'none');
@@ -89,13 +109,20 @@ function removeTooltip() {
 
 function drawTooltip(sd) {
     var x0 = x.invert(d3.mouse(this)[0]);
+
+
+
     // i = bisectDate(data, x0, 1),
     // d0 = data[i - 1],
     // d1 = data[i],
     // d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-    var b = (x.invert(d3.mouse(tipBox.node())[0]) + 5)
-    var a = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10)
-    var tes = Math.floor(x0);
+    // var b = (x.invert(d3.mouse(tipBox.node())[0]) + 5)
+    // var a = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10)
+    var hoveredMonth = Math.floor(x0);
+    chart.select('text')
+        .style('margin', '200px')
+        .html('Energy consumption for month of '+monthNames[hoveredMonth-1])
+        .attr('x', 200);
     // console.log((d3.mouse(tipBox.node())[0]));
     // const year = Math.floor((x.invert(d3.mouse(tipBox.node())[0]) + 5) / 10) * 10;
     //
@@ -104,8 +131,8 @@ function drawTooltip(sd) {
     // })
     const year = 6;
     tooltipLine.attr('stroke', 'black')
-        .attr('x1', x(tes))
-        .attr('x2', x(tes))
+        .attr('x1', x(hoveredMonth))
+        .attr('x2', x(hoveredMonth))
         .attr('y1', 0)
         .attr('y2', height);
 
@@ -116,10 +143,11 @@ function drawTooltip(sd) {
         .selectAll()
         .data(nationalPoints).enter()
         .append('div')
-        .style('color', d => d.color)
+        .style('color', nationalAverageLineColor)
+        .style('font-size', '12px')
         .html(function (d, i) {
-                if (d.month === tes) {
-                    return d.average
+                if (d.month === hoveredMonth) {
+                    return 'National Avg: '+parseFloat(d.average).toFixed(4);
                 }
 
             }
@@ -133,35 +161,38 @@ function drawTooltip(sd) {
             .selectAll()
             .data(hexbinPoints).enter()
             .append('div')
-            .style('color',nationalAverageLineColor)
+            .style('color',hexbinAverageLineColor)
+            .style('font-size', '12px')
             .html(function (d, i) {
-                    if (d.month === tes) {
-                        return d.average
+                    if (d.month === hoveredMonth) {
+                        return 'Hexbin Avg: '+parseFloat(d.average).toFixed(4);
                     }
 
                 }
             );
     }
+    if(indivPoints!==undefined) {
+        tooltipIndv.html(" ")
+            .style('display', 'block')
+            .style('right', 0)
+            .style('top', 0)
+            .selectAll()
+            .data(indivPoints).enter()
+            .append('div')
+            .style('color', d => singlePostalAverageColor)
+            .style('font-size', '12px')
+            .html(function (d, i) {
+                    if (d.month === hoveredMonth) {
+                        return 'Postal Avg: '+d.average
+                    }
 
-    // tooltipIndv.html(" ")
-    //     .style('display', 'block')
-    //     .style('right', 0)
-    //     .style('top', 0)
-    //     .selectAll()
-    //     .data(nationalPoints).enter()
-    //     .append('div')
-    //     .style('color', d => d.color)
-    //     .html(function (d, i) {
-    //             if (d.month === tes) {
-    //                 return d.average
-    //             }
-    //
-    //         }
-    //     );
+                }
+            );
+    }
 }
 
 
-function avgOfAvgs(dataPoints, isNational) {
+function avgOfAvgs(dataPoints, linetype) {
     var data = [];
     let jan = 0, feb = 0, mar = 0, apr = 0, may = 0, jun = 0, jul = 0, aug = 0, sep = 0, oct = 0, nov = 0, dec = 0;
     let countJan = 0, countFeb = 0, countMar = 0, countApr = 0, countMay = 0, countJun = 0, countJul = 0, countAug = 0,
@@ -337,5 +368,17 @@ function avgOfAvgs(dataPoints, isNational) {
     }
 
 
-    drawChart(data, isNational);
+    drawChart(data, linetype);
+    return data;
+}
+
+function calculateAvgForSinglePoint(ArrayOfMonths){
+    var data = []
+    ArrayOfMonths.forEach(function (singleData){
+        data.push({
+            "month": parseInt(singleData.o.month),
+            "average": singleData.o.average
+        })
+    })
+    drawChart(data, 'single')
 }

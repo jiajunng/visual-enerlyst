@@ -34,7 +34,7 @@ function handleFile(e) {
             //     data.long+'</td></tr>');
         })
         generateData(datapoints)
-        avgOfAvgs(datapoints, true)
+        avgOfAvgs(datapoints, 'national')
         return datapoints;
     };
     if (rABS)
