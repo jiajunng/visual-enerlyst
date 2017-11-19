@@ -84,23 +84,15 @@ hexLayer.dispatch()
         $(this).addClass('hexbinSelected');
         $('.points').remove();
 
-        // console.log("yearly average of each postal code in this hexbin "+avgInEachHexbin(d));
-        //
-        //
-        // console.log(d);
         cleanedData = cleanSelectedData(d);
         var monthlyAveraged = avgOfAvgs(cleanedData, 'hexbin');
         let total = 0;
-        // monthlyAveraged.forEach(function(eachMonth){
-        //     total +=eachMonth.average
-        // })
-        //
-        //
-        // let averagePerMonthInHexbin = total/monthlyAveraged.length;
+
         var avgValues = monthlyAveraged.map(a => a.average);
         var min =d3.min(avgValues)
         var max =d3.max(avgValues)
         plotMarkersInSelectedHexbin(getUniquePointsInData(d), min, max);
+
 
     });
 
@@ -134,28 +126,36 @@ hexLayer
         return postalPoints.length;
 
     });
-let generateData = function (dataPoints) {
-    var data = [];
-    dataPoints.forEach(function (singleData) {
-        if (singleData.long !== undefined && singleData.lat !== undefined)
+let generateData = function (year) {
+    var data = namespace.allData.getItem(year);
+    // data.forEach(function (singleData) {
+    //     if (singleData.long !== undefined && singleData.lat !== undefined)
+    //
+    //         data.push(
+    //             {
+    //                 "year" : singleData.year,
+    //                 "lat": singleData.lat,
+    //                 "long": singleData.long,
+    //                 "postal": singleData.postal,
+    //                 "1room": singleData.oneroom,
+    //                 "3room": singleData.threeroom,
+    //                 "4room": singleData.fourroom,
+    //                 "5room": singleData.fiveroom,
+    //                 "average": singleData.average,
+    //                 "month": singleData.month,
+    //                 "addr" : singleData.address,
+    //             }
+    //         )
+    //
+    // })
 
-            data.push(
-                {
-                    "year" : singleData.year,
-                    "lat": singleData.lat,
-                    "long": singleData.long,
-                    "postal": singleData.postal,
-                    "1room": singleData.oneroom,
-                    "3room": singleData.threeroom,
-                    "4room": singleData.fourroom,
-                    "5room": singleData.fiveroom,
-                    "average": singleData.average,
-                    "month": singleData.month,
-                    "addr" : singleData.address,
-                }
-            )
+    var groupedByPostal = d3.nest()
+        .key(function(d) {
+            return d.postal;
+        })
+        .entries(data);
+    console.log(data);
 
-    })
     hexLayer.data(data);
 };
 

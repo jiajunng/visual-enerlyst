@@ -96,7 +96,7 @@ function drawChart(averageOfEachMonth, linetype) {
 
 
     tipBox = chart.append('rect')
-        .attr('width', width)
+        .attr('width', 480)
         .attr('height', height)
         .attr('opacity', 0)
         .on('mousemove', drawTooltip)

@@ -67,7 +67,7 @@ function plotMarkersInSelectedHexbin(d, min, max) {
         // console.log(averagePerMonth);
         var oneRecord = single.values[0].o;
         var marker = new L.Marker(new L.LatLng(oneRecord.lat, oneRecord.long), {icon: myIcon}).bindPopup("" +
-            "<div id='"+oneRecord.postal+"'><b>"+oneRecord.addr+"</b>")
+            "<div id='"+oneRecord.postal+"'><b>"+oneRecord.address+"</b>")
             .on('click', function(e){
                 console.log(e.target.postal)
                 console.log(e.target.lat)
