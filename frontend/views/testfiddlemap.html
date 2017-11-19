@@ -11,6 +11,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
     <script src="/scripts/bootstrap/dist/js/bootstrap.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
 
     <link rel="stylesheet" href="/styles/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="/styles/bootstrap/dist/css/bootstrap.css">
@@ -31,7 +34,13 @@
         <li role="presentation">
             <a href="#data" aria-controls="profile" role="tab" data-toggle="tab">Data</a>
         </li>
+
+
+        <div id="year-select"></div>
+
     </ul>
+
+    <!-- add in drop down menu for years -->
 
     <!-- Tab panes -->
     <div class="tab-content">
@@ -45,8 +54,15 @@
 
                 <div class="leftpanel-component" id="knn">
                     <!--<svg ></svg>-->
+                    <div class="row" style="position:absolute; width:100%">
+                        <div id='tooltip' class="col-md-4" ></div>
+                        <div id='tooltip2' class="col-md-4" ></div>
+                        <div id='tooltipIndv' class="col-md-4" ></div>
+                    </div>
 
-
+                    <!--<div id='tooltip' class="col-md-4" style='position:absolute;background-color:white;padding:5px'></div>-->
+                    <!--<div id='tooltip2' class="col-md-4" style='position:absolute;background-color:cadetblue;padding:5px; float:right'></div>-->
+                    <!--<div id='tooltipIndv' class="col-md-4" style='position:absolute;background-color:cadetblue;padding:5px;' ></div>-->
                 </div>
                 <div class="leftpanel-component" id="detailedPointsMap">
                 </div>
@@ -69,15 +85,13 @@
             </div>
 
             <table class="table table-bordered" id="data-table">
-               <tbody>
-
-               </tbody>
             </table>
         </div>
     </div>
 
 </div>
 
+<script src="/javascripts/hashTable.js"></script>
 <script src="/javascripts/mapfunctions.js"></script>
 <script src="/javascripts/detailedPointsMapFunctions.js"></script>
 <script src="/javascripts/lineChart.js"></script>
