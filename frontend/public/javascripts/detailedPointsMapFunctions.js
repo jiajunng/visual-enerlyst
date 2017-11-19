@@ -8,7 +8,7 @@ var osm = L.tileLayer('http://maps-a.onemap.sg/v2/Default/{z}/{x}/{y}.png', {
     maxZoom: 18
 });
 
-let smallMap = new L.Map('detailedPointsMap',
+smallMap = new L.Map('detailedPointsMap',
     {
         layers: [osm],
         center: new L.LatLng(center[0], center[1]),
@@ -23,16 +23,36 @@ let sw = L.latLng(1.227834, 103.608210),
 
 var myIcon = L.icon({
     iconUrl: '../images/house.png',
-    iconSize: [10, 10],
+    iconSize: [12, 12],
     // iconAnchor: [22, 94],
     // popupAnchor: [-3, -76],
     // // shadowUrl: 'my-icon-shadow.png',
     // shadowSize: [68, 95],
     // shadowAnchor: [22, 94]
 });
+function onYearChange(year) {
 
+
+    hexbinPoints = {}
+    //remove tooltip on year change
+    d3.select('#tooltip').html("")
+    d3.select('#tooltip2').html("")
+    d3.select('#tooltipIndv').html("")
+    //remove colored border in hexbin
+    d3.select('#map').select('.hexbinSelected').classed('hexbinSelected', false);
+    smallMap.eachLayer(function (layer) {
+        if( !(layer instanceof L.TileLayer) )
+        {
+            smallMap.removeLayer(layer);
+        }
+
+    });
+    var asdas = smallMap;
+    generateData(year);
+    avgOfAvgs(namespace.allData.getItem(year), 'national')
+}
 function plotMarkersInSelectedHexbin(d, min, max) {
-
+    var sda = smallMap
     //remove points
     pointsArray.forEach(function (single) {
         smallMap.removeLayer(single);
@@ -61,9 +81,6 @@ function plotMarkersInSelectedHexbin(d, min, max) {
         {
             myIcon.options.iconUrl = "../images/above75below100.png"
         }
-
-
-
         // console.log(averagePerMonth);
         var oneRecord = single.values[0].o;
         var marker = new L.Marker(new L.LatLng(oneRecord.lat, oneRecord.long), {icon: myIcon}).bindPopup("" +

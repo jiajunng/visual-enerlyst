@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5aa2f0f5-ebd7-4ba9-a687-cd06c78b7c92" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/frontend/public/javascripts/hashTable.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/public/javascripts/dataupload.js" afterPath="$PROJECT_DIR$/frontend/public/javascripts/dataupload.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/public/javascripts/detailedPointsMapFunctions.js" afterPath="$PROJECT_DIR$/frontend/public/javascripts/detailedPointsMapFunctions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/public/javascripts/lineChart.js" afterPath="$PROJECT_DIR$/frontend/public/javascripts/lineChart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js" afterPath="$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/frontend/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/views/testfiddlemap.html" afterPath="$PROJECT_DIR$/frontend/views/testfiddlemap.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -35,8 +36,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1445">
-              <caret line="85" column="1" lean-forward="false" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+            <state relative-caret-position="306">
+              <caret line="86" column="9" lean-forward="false" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -45,20 +46,20 @@
       <file leaf-file-name="testfiddlemap.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/views/testfiddlemap.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+            <state relative-caret-position="68">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lineChart.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lineChart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/lineChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="98" column="26" lean-forward="false" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
+            <state relative-caret-position="-765">
+              <caret line="207" column="14" lean-forward="false" selection-start-line="207" selection-start-column="4" selection-end-line="207" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -67,24 +68,37 @@
       <file leaf-file-name="mapfunctions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-72">
-              <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+            <state relative-caret-position="1156">
+              <caret line="144" column="7" lean-forward="false" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="7" />
               <folding>
-                <marker date="1511089352392" expanded="true" signature="157:163" ph="©" />
-                <marker date="1511089352392" expanded="true" signature="231:237" ph="©" />
+                <marker date="1511097123363" expanded="true" signature="157:163" ph="©" />
+                <marker date="1511097123363" expanded="true" signature="231:237" ph="©" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detailedPointsMapFunctions.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dataupload.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/dataupload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="79" column="39" lean-forward="true" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
+              <folding>
+                <marker date="1511100472000" expanded="true" signature="3895:3901" ph="©" />
+                <marker date="1511100472000" expanded="true" signature="3969:3975" ph="©" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detailedPointsMapFunctions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/detailedPointsMapFunctions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+            <state relative-caret-position="255">
+              <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
               <folding>
-                <marker date="1511090745335" expanded="true" signature="192:198" ph="©" />
-                <marker date="1511090745335" expanded="true" signature="266:272" ph="©" />
+                <marker date="1511100614724" expanded="true" signature="192:198" ph="©" />
+                <marker date="1511100614724" expanded="true" signature="266:272" ph="©" />
               </folding>
             </state>
           </provider>
@@ -111,6 +125,7 @@
       <find>addr</find>
       <find>calculateAvgForSinglePoint</find>
       <find>rect</find>
+      <find>change</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\kunsheng\Desktop\smu\Year 4 Sem 1\VA\Project\Visual Enerlyst</dir>
@@ -122,11 +137,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/frontend/views/testfiddlemap.html" />
-        <option value="$PROJECT_DIR$/frontend/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js" />
-        <option value="$PROJECT_DIR$/frontend/public/javascripts/dataupload.js" />
         <option value="$PROJECT_DIR$/frontend/public/javascripts/lineChart.js" />
+        <option value="$PROJECT_DIR$/frontend/public/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/frontend/views/testfiddlemap.html" />
+        <option value="$PROJECT_DIR$/frontend/public/javascripts/dataupload.js" />
         <option value="$PROJECT_DIR$/frontend/public/javascripts/detailedPointsMapFunctions.js" />
       </list>
     </option>
@@ -435,25 +450,25 @@
       <option name="presentableId" value="Default" />
       <updated>1511059075590</updated>
       <workItem from="1511059080218" duration="18904000" />
-      <workItem from="1511086737483" duration="3630000" />
+      <workItem from="1511086737483" duration="12768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22534000" />
+    <option name="totallyTimeSpent" value="31672000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40694007" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -496,7 +511,7 @@
         <state relative-caret-position="765">
           <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -513,7 +528,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1511100472000" expanded="true" signature="3895:3901" ph="©" />
+            <marker date="1511100472000" expanded="true" signature="3969:3975" ph="©" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -522,8 +540,8 @@
         <state relative-caret-position="1173">
           <caret line="69" column="69" lean-forward="false" selection-start-line="69" selection-start-column="69" selection-end-line="69" selection-end-column="69" />
           <folding>
-            <marker date="1511090745335" expanded="true" signature="192:198" ph="©" />
-            <marker date="1511090745335" expanded="true" signature="266:272" ph="©" />
+            <marker date="1511100614724" expanded="true" signature="192:198" ph="©" />
+            <marker date="1511100614724" expanded="true" signature="266:272" ph="©" />
           </folding>
         </state>
       </provider>
@@ -538,8 +556,8 @@
         <state relative-caret-position="1428">
           <caret line="84" column="30" lean-forward="true" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
           <folding>
-            <marker date="1511089352392" expanded="true" signature="157:163" ph="©" />
-            <marker date="1511089352392" expanded="true" signature="231:237" ph="©" />
+            <marker date="1511097123363" expanded="true" signature="157:163" ph="©" />
+            <marker date="1511097123363" expanded="true" signature="231:237" ph="©" />
           </folding>
         </state>
       </provider>
@@ -558,59 +576,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="144" column="7" lean-forward="false" selection-start-line="144" selection-start-column="6" selection-end-line="144" selection-end-column="7" />
+          <folding>
+            <marker date="1511097123363" expanded="true" signature="157:163" ph="©" />
+            <marker date="1511097123363" expanded="true" signature="231:237" ph="©" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="1" lean-forward="false" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+        <state relative-caret-position="306">
+          <caret line="86" column="9" lean-forward="false" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/views/testfiddlemap.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="68">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/lineChart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="98" column="26" lean-forward="false" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/dataupload.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/mapfunctions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+        <state relative-caret-position="257">
+          <caret line="79" column="39" lean-forward="true" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="39" />
           <folding>
-            <marker date="1511089352392" expanded="true" signature="157:163" ph="©" />
-            <marker date="1511089352392" expanded="true" signature="231:237" ph="©" />
+            <marker date="1511100472000" expanded="true" signature="3895:3901" ph="©" />
+            <marker date="1511100472000" expanded="true" signature="3969:3975" ph="©" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/detailedPointsMapFunctions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+        <state relative-caret-position="255">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
           <folding>
-            <marker date="1511090745335" expanded="true" signature="192:198" ph="©" />
-            <marker date="1511090745335" expanded="true" signature="266:272" ph="©" />
+            <marker date="1511100614724" expanded="true" signature="192:198" ph="©" />
+            <marker date="1511100614724" expanded="true" signature="266:272" ph="©" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/public/javascripts/lineChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="207" column="14" lean-forward="false" selection-start-line="207" selection-start-column="4" selection-end-line="207" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

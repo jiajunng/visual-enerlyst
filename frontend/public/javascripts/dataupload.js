@@ -64,19 +64,26 @@ function handleFile(e) {
         // print dropdown menu for year
         // --- move this so that ppl wont assume table can be changed with the year selected
 
-        html = '';
+        html = '<b>Select Year: </b><select class="selectpicker">';
+
         var count = 1;
         var keys = namespace.allData.keys()
         keys.forEach(function (key) {
             if (count === 1) {
-                html = '<select onChange="onYearChange(this.value);" name="year">';
+                // html += '<select onChange="onYearChange(this.value);" name="year">';
             }
             // console.log(key)
-            html += '<option value="' + key + '">'+ key + '</option>'
+            html += '<option>'+ key + '</option>'
             count++;
         })
         html += '</select>';
         $('#year-select').append(html);
+
+
+        $('.selectpicker').on('change', function(){
+            var selected = $(this).find("option:selected").val();
+            onYearChange(selected);
+        });
 
         generateData(sheet_name_list[0]);
         // generateData(allData.getItem(sheet_name_list[0]));
@@ -95,10 +102,25 @@ function handleFile(e) {
         reader.readAsArrayBuffer(f);
 }
 
-function onYearChange(year) {
-    generateData(year);
-    avgOfAvgs(namespace.allData.getItem(year), 'national')
-}
+// function onYearChange(year) {
+//     generateData(year);
+//     avgOfAvgs(namespace.allData.getItem(year), 'national')
+//
+//     // var center = [1.344329, 104.060097];
+//     var center = [1.3521, 103.8198];
+//     let pointsArray = [];
+//
+//     var osm = L.tileLayer('http://maps-a.onemap.sg/v2/Default/{z}/{x}/{y}.png', {
+//         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+//         subdomains: 'abcd',
+//         maxZoom: 18
+//     });
+//
+//     let smallMap =  L.Map('detailedPointsMap')
+//
+//     smallMap.redraw();
+//     smallMap.remove();
+// }
 
 function csvToArray(csvString){
     // The array we're going to build
