@@ -15,24 +15,75 @@ function handleFile(e) {
         myFunction();
         datapoints = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]])
         console.log(datapoints)
-        $('#data-table').append('<tr><th>Postal Code</th><th>1-room / 2-room</th><th>3-room</th><th>4-room</th>' +
-            '<th>5-room/ Executive</th><th>Postal Code Average</th><th>Year</th><th>Month</th><th>Lat</th>' +
-            '<th>Long</th></tr>');
+
+        // $('#data-table').append('<tr><th>Postal Code</th><th>1-room / 2-room</th><th>3-room</th><th>4-room</th>' +
+        //     '<th>5-room/ Executive</th><th>Postal Code Average</th><th>Year</th><th>Month</th><th>Lat</th>' +
+        //     '<th>Long</th></tr>');
+
+        // datapoints.forEach(function(data){
+        //     // var someText = data.postal+'\n';
+        //     // $('#data-table').append(document.createTextNode(someText));
+        //     // console.log(someText)
+        //     $('#data-table').append('<tr><td>'+data.postal+'</td><td>'+
+        //         data.oneroom+'</td><td>'+
+        //         data.threeroom+'</td><td>'+
+        //         data.fourroom+'</td><td>'+
+        //         data.fiveroom+'</td><td>'+
+        //         data.average+'</td><td>'+
+        //         data.year+'</td><td>'+
+        //         data.month+'</td><td>'+
+        //         data.lat+'</td><td>'+
+        //         data.long+'</td></tr>');
+        // })
+
+        var html = '<table class="table table-bordered"><theader>' +
+            '<th>Postal Code</th>' +
+            '<th>1-room / 2-room</th>' +
+            '<th>3-room</th>' +
+            '<th>4-room</th>' +
+            '<th>5-room / Executive</th>' +
+            '<th>Postal Code Average</th>' +
+            '<th>Year</th>' +
+            '<th>Month</th>' +
+            '<th>Lat</th>' +
+            '<th>Long</th>' +
+            '</theader>';
+
         datapoints.forEach(function(data){
-            var someText = data.postal+'\n';
-            $('#data-table').append(document.createTextNode(someText));
-            // console.log(someText)
-            // $('#data-table').append('<tr><td>'+data.postal+'</td><td>'+
-            //     data.oneroom+'</td><td>'+
-            //     data.threeroom+'</td><td>'+
-            //     data.fourroom+'</td><td>'+
-            //     data.fiveroom+'</td><td>'+
-            //     data.average+'</td><td>'+
-            //     data.year+'</td><td>'+
-            //     data.month+'</td><td>'+
-            //     data.lat+'</td><td>'+
-            //     data.long+'</td></tr>');
+            html += '<tr>' +
+                '<td>'+ data.postal + '</td>' +
+                '<td>'+ data.oneroom + '</td>' +
+                '<td>'+ data.threeroom + '</td>' +
+                '<td>'+ data.fourroom + '</td>' +
+                '<td>'+ data.fiveroom + '</td>' +
+                '<td>'+ data.average + '</td>' +
+                '<td>'+ data.year + '</td>' +
+                '<td>'+ data.month + '</td>' +
+                '<td>'+ data.lat + '</td>' +
+                '<td>'+ data.long + '</td>' +
+                '</tr>';
         })
+        html += '</table>';
+        $('#data-table').append(html);
+
+        // $('#data-table').DataTable({
+        //     data: datapoints,
+        //     dataType: "json",
+        //     cache: false,
+        //     columns: [
+        //         { title: "postal" },
+        //         { title: "oneroom" },
+        //         { title: "threeroom" },
+        //         { title: "fourroom" },
+        //         { title: "fiveroom" },
+        //         { title: "average" },
+        //         { title: "year" },
+        //         { title: "month" },
+        //         { title: "lat" },
+        //         { title: "long" }
+        //     ]
+        // });
+
         generateData(datapoints)
         avgOfAvgs(datapoints, 'national')
         return datapoints;
