@@ -9,14 +9,13 @@ A d3.js app which utilises the technique of hexagonal binning for visualizing en
 * Line Chart
 
 ## To Use
-1. Geocode Postal Codes
 
-### Geocoding Postal Codes
+### 1. Geocoding Postal Codes
 To be able to plot the postal codes on a map, there is a need to convert the postal codes to longitude and latitude. a [geocoder app](https://github.com/jiajunng/SgPostalToLatLng) that calls upon OneMap's search API. The geocoder is able to read an excel workbook containing the postal codes, and returns an updated excel workbook containing the longitude and latitude for each postal code
 
-2. Upload Data from EMA
+### 2. Upload Data from EMA
 
-### Public Housing
+#### Public Housing
 The data to be uploaded should be in the following format:
 
 | Attribute        | Description           | 
@@ -33,7 +32,7 @@ The data to be uploaded should be in the following format:
 | long | Longitude of the building      |
 | address | Address of the building      |
 
-### Private Housing
+#### Private Housing
 The data to be uploaded should be in the following format:
 
 | Attribute        | Description           | 
