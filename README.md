@@ -45,7 +45,7 @@ The data to be uploaded should be in the following format:
 | long | Longitude of the building      |
 | address | Address of the building      |
 
-### Measuring Average 
+#### Measuring Average 
 Limitation from EMA's datasets:
 
 For public housing, the data provided by EMA only shows the average electricity consumption by all apartments that falls under the same dwelling type. For instance, the dataset for July 2015 would indicatethat 3-room flats in postal code 824601 used an average of 339 kwh of electricity. The crucial information that we were unable to obtain is how many 3-room flats are in postal code 824601, or what is the total electricity consumed by all the 3-room flats. This makes it impossible to accurately compute each postal code's weighted-average electricity consumption.
